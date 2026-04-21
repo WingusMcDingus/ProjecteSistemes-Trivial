@@ -1,12 +1,61 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>QuizMovie · Trivial de películas</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+    <div class="app-container">
+        <!-- Cabecera fija -->
+        <header class="quiz-header">
+            <i class="fas fa-clapperboard"></i>
+            <h1>QuizMovie</h1>
+            <span><i class="far fa-film"></i> trivia</span>
+        </header>
+
+        <!-- PANTALLA INICIO (HOME) - visible por defecto -->
+        <div id="homeScreen" class="screen active-screen">
+            <div class="welcome-card">
+                <div class="intro-text">
+                    <h2>🎬 Bienvenido a QuizMovie</h2>
+                    <p>Demuestra cuánto sabes de las películas más populares. Escenas, detalles y curiosidades.</p>
+                </div>
+                <div class="rules-box">
+                    <h3><i class="fas fa-scroll"></i> Reglas del juego</h3>
+                    <div class="rules-grid">
+                        <div class="rule-item"><i class="fas fa-hashtag"></i> 5 preguntas aleatorias</div>
+                        <div class="rule-item"><i class="fas fa-hourglass-half"></i> 15 segundos por pregunta</div>
+                        <div class="rule-item"><i class="fas fa-dice"></i> Sin respuesta → aleatoria</div>
+                        <div class="rule-item"><i class="fas fa-trophy"></i> Título según aciertos</div>
+                        <div class="rule-item"><i class="fas fa-user-check"></i> Nombre y edad obligatorios</div>
+                        <div class="rule-item"><i class="fas fa-rotate-left"></i> Reinicio completo</div>
+                    </div>
+                </div>
+                <div class="access-form">
+                    <div class="form-group">
+                        <div class="input-field">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="playerName" placeholder="Tu nombre" autocomplete="off">
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-calendar-alt"></i>
+                            <input type="number" id="playerAge" placeholder="Edad" min="1" max="120">
+                        </div>
+                        <button class="btn" id="startBtn"><i class="fas fa-play"></i> Comenzar</button>
+                    </div>
+                    <div class="small-note">
+                        <i class="fas fa-info-circle"></i> Introduce tus datos para jugar.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Las otras pantallas se añadirán en próximos commits -->
+        <div id="gameScreen" class="screen"></div>
+        <div id="resultScreen" class="screen"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

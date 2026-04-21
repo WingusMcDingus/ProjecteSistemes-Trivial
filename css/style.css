@@ -1,0 +1,214 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+}
+
+body {
+    background: linear-gradient(145deg, #0b0f1c 0%, #1a1f2f 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.app-container {
+    max-width: 1200px;
+    width: 100%;
+    background: rgba(18, 25, 40, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 42px;
+    box-shadow: 0 25px 40px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 215, 100, 0.15);
+    padding: 28px 32px;
+    border: 1px solid rgba(255, 220, 150, 0.2);
+    color: #f0e9e1;
+}
+
+/* Pantallas */
+.screen {
+    display: none;
+}
+
+.active-screen {
+    display: block;
+}
+
+/* Header */
+.quiz-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    border-bottom: 1px dashed #ffd96655;
+    padding-bottom: 16px;
+}
+
+.quiz-header i {
+    font-size: 2.6rem;
+    color: #f5c542;
+    filter: drop-shadow(0 0 6px #ffb34780);
+}
+
+.quiz-header h1 {
+    font-weight: 700;
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #ffe6b0, #ffc857);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 5px #00000030;
+}
+
+.quiz-header span {
+    margin-left: auto;
+    font-size: 0.9rem;
+    background: #2a344a;
+    padding: 6px 16px;
+    border-radius: 40px;
+    color: #ccd6f0;
+    border: 1px solid #5f6f8f;
+}
+
+/* Home screen */
+.welcome-card {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.intro-text h2 {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #ffdfa7;
+    margin-bottom: 12px;
+}
+
+.intro-text p {
+    color: #b9c4da;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.rules-box {
+    background: #101826dd;
+    border-radius: 28px;
+    padding: 24px 28px;
+    border-left: 6px solid #f5c542;
+    box-shadow: inset 0 1px 3px #ffffff0c, 0 8px 12px #00000025;
+}
+
+.rules-box h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.6rem;
+    color: #fad98b;
+    margin-bottom: 18px;
+}
+
+.rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px 20px;
+}
+
+.rule-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.rule-item i {
+    width: 28px;
+    color: #f5c542;
+    font-size: 1.3rem;
+}
+
+.access-form {
+    background: #1e2638;
+    border-radius: 32px;
+    padding: 26px 28px;
+    margin-top: 8px;
+}
+
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.input-field {
+    display: flex;
+    align-items: center;
+    background: #0f1622;
+    border-radius: 60px;
+    padding: 6px 20px;
+    border: 1px solid #3f4b66;
+    flex: 1 1 200px;
+}
+
+.input-field i {
+    color: #f5c542;
+    font-size: 1.2rem;
+    margin-right: 12px;
+}
+
+.input-field input {
+    background: transparent;
+    border: none;
+    padding: 14px 0;
+    font-size: 1.1rem;
+    color: #f2e9de;
+    width: 100%;
+    outline: none;
+}
+
+.input-field input::placeholder {
+    color: #8893ae;
+}
+
+.btn {
+    background: linear-gradient(145deg, #f5c542, #e3a823);
+    border: none;
+    color: #0f1420;
+    font-weight: 700;
+    padding: 14px 36px;
+    border-radius: 60px;
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #9e7018, 0 6px 12px black;
+    transition: all 0.1s ease;
+    border: 1px solid #ffe094;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #9e7018, 0 4px 10px black;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    transform: none;
+    box-shadow: 0 4px 0 #7a5515;
+    pointer-events: none;
+}
+
+.small-note {
+    margin-top: 16px;
+    color: #9dabc7;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .app-container { padding: 20px 16px; }
+    .quiz-header h1 { font-size: 1.8rem; }
+}
