@@ -17,7 +17,7 @@ body {
 .app-container {
     max-width: 1200px;
     width: 100%;
-    background: rgba(18, 25, 40, 0.85);
+    background: linear-gradient(rgba(217, 36, 36, 0.87), 10%, #0b0f1c);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-radius: 42px;
@@ -212,3 +212,39 @@ body {
     .app-container { padding: 20px 16px; }
     .quiz-header h1 { font-size: 1.8rem; }
 }
+
+.quiz-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    border-bottom: 3px solid #facc15;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.header-logo i {
+    font-size: 2.8rem;
+    color: #facc15;
+    filter: drop-shadow(0 2px 4px #00000050);
+}
+
+.header-logo h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #fde68a, #facc15);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 0;
+}
+
