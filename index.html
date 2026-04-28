@@ -5,62 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuizMovie · Trivial de películas</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+    <header class="navbar">
+        <div class="navbar-logo">
+            <div class="logo-icon">
+                <i class="fas fa-magnifying-glass"></i>
+                <i class="fas fa-play logo-play"></i>
+            </div>
+            <span class="logo-text">QuizMovie</span>
+        </div>
+        <span class="navbar-tagline">Trivial de películas</span>
+    </header>
 
-    <div class="app-container">
-        <!-- Cabecera fija -->
-    <header class="quiz-header">
-    <div class="header-logo">
-        <i class="fas fa-clapperboard"></i>
-        <h1>QuizMovie</h1>
-    </div>
-    <div class="header-tagline">
-        <span>🎬 Trivial de películas</span>
-    </div>
-</header>
-
-        <!-- PANTALLA INICIO (HOME) - visible por defecto -->
+    <div class="app-wrapper">
         <div id="homeScreen" class="screen active-screen">
-            <div class="welcome-card">
-                <div class="intro-text">
-                    <h2>🎬 Bienvenido a QuizMovie</h2>
-                    <p>Demuestra cuánto sabes de las películas más populares. Escenas, detalles y curiosidades.</p>
+            <section class="hero">
+                <div class="poster-grid">
+                    <div class="poster" style="--c:#e50914">DEADPOOL</div>
+                    <div class="poster" style="--c:#c0392b">ORANGE<br>IS THE<br>NEW BLACK</div>
+                    <div class="poster" style="--c:#8e1a1a">BLACK<br>MIRROR</div>
+                    <div class="poster" style="--c:#b03a2e">MAD MAX<br>FURY ROAD</div>
+                    <div class="poster" style="--c:#922b21">THE<br>WITCHER</div>
+                    <div class="poster" style="--c:#7b241c">MECHANIC</div>
+                    <div class="poster" style="--c:#641e16">RIVERDALE</div>
+                    <div class="poster" style="--c:#e50914">DAREDEVIL</div>
+                    <div class="poster" style="--c:#c0392b">STRANGER<br>THINGS</div>
+                    <div class="poster" style="--c:#8e1a1a">INCEPTION</div>
+                    <div class="poster" style="--c:#b03a2e">FINDING<br>DORY</div>
+                    <div class="poster" style="--c:#922b21">FAMILY<br>GUY</div>
+                    <div class="poster" style="--c:#7b241c">SANDY<br>WEXLER</div>
+                    <div class="poster" style="--c:#641e16">GRACE</div>
+                    <div class="poster" style="--c:#e50914">INTERSTELLAR</div>
+                    <div class="poster" style="--c:#c0392b">THE DARK<br>KNIGHT</div>
+                    <div class="poster" style="--c:#8e1a1a">AVATAR</div>
+                    <div class="poster" style="--c:#b03a2e">TITANIC</div>
                 </div>
-                <div class="rules-box">
-                    <h3><i class="fas fa-scroll"></i> Reglas del juego</h3>
-                    <div class="rules-grid">
-                        <div class="rule-item"><i class="fas fa-hashtag"></i> 5 preguntas aleatorias</div>
-                        <div class="rule-item"><i class="fas fa-hourglass-half"></i> 15 segundos por pregunta</div>
-                        <div class="rule-item"><i class="fas fa-dice"></i> Sin respuesta → aleatoria</div>
-                        <div class="rule-item"><i class="fas fa-trophy"></i> Título según aciertos</div>
-                        <div class="rule-item"><i class="fas fa-user-check"></i> Nombre y edad obligatorios</div>
-                        <div class="rule-item"><i class="fas fa-rotate-left"></i> Reinicio completo</div>
+                <div class="hero-overlay"></div>
+                <div class="hero-logo-center">
+                    <div class="big-logo-icon">
+                        <i class="fas fa-magnifying-glass"></i>
+                        <i class="fas fa-play big-play"></i>
                     </div>
                 </div>
-                <div class="access-form">
-                    <div class="form-group">
-                        <div class="input-field">
-                            <i class="fas fa-user"></i>
-                            <input type="text" id="playerName" placeholder="Tu nombre" autocomplete="off">
-                        </div>
-                        <div class="input-field">
+            </section>
+
+            <section class="welcome-section">
+                <h2 class="welcome-title">Bienvenido a QuizMovie</h2>
+                <p class="welcome-sub">Demuestra cuánto sabes de las películas más populares de la historia. Escenas, curiosidades y momentos icónicos te esperan.</p>
+                <p class="welcome-body">¿Crees que eres un verdadero cinéfilo? Ponte a prueba con 5 preguntas aleatorias sobre las películas más populares. Tendrás solo 15 segundos por pregunta — si se acaba el tiempo, el juego elige por ti. Al final descubrirás tu título de cinéfilo.</p>
+            </section>
+
+            <section class="main-section">
+                <div class="brand-col">
+                    <div class="brand-title">
+                        <span class="brand-quiz">QUIZ</span>
+                        <span class="brand-movie">MOVIE</span>
+                    </div>
+                    <div class="rules-list">
+                        <div class="rule"><i class="fas fa-hashtag"></i> 5 preguntas aleatorias por partida</div>
+                        <div class="rule"><i class="fas fa-hourglass-half"></i> 15 segundos por pregunta</div>
+                        <div class="rule"><i class="fas fa-dice"></i> Sin respuesta → elección aleatoria</div>
+                        <div class="rule"><i class="fas fa-trophy"></i> Título según tus aciertos</div>
+                        <div class="rule"><i class="fas fa-user-check"></i> Nombre y edad obligatorios</div>
+                        <div class="rule"><i class="fas fa-rotate-left"></i> Reinicio completo al terminar</div>
+                    </div>
+                </div>
+
+                <div class="login-col">
+                    <h3 class="form-title">Acceder al quiz</h3>
+                    <p class="form-sub">Introduce tus datos para empezar</p>
+
+                    <div class="input-wrap">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="playerName" placeholder="Tu nombre" autocomplete="off">
+                    </div>
+                    <div class="input-row">
+                        <div class="input-wrap flex-1">
                             <i class="fas fa-calendar-alt"></i>
                             <input type="number" id="playerAge" placeholder="Edad" min="1" max="120">
                         </div>
-                        <button class="btn" id="startBtn"><i class="fas fa-play"></i> Comenzar</button>
+                        <button class="btn-start" id="startBtn">
+                            <i class="fas fa-play"></i> Comenzar
+                        </button>
                     </div>
-                    <div class="small-note">
-                        <i class="fas fa-info-circle"></i> Introduce tus datos para jugar.
-                    </div>
+                    <p class="form-note"><i class="fas fa-info-circle"></i> Todos los campos son obligatorios para jugar.</p>
                 </div>
-            </div>
+            </section>
         </div>
 
         <!-- Las otras pantallas se añadirán en próximos commits -->
         <div id="gameScreen" class="screen"></div>
         <div id="resultScreen" class="screen"></div>
     </div>
+
+    <footer class="site-footer">
+        <div class="footer-logo">
+            <div class="logo-icon small">
+                <i class="fas fa-magnifying-glass"></i>
+                <i class="fas fa-play logo-play small-play"></i>
+            </div>
+            <span class="logo-text">QuizMovie</span>
+        </div>
+        <span class="footer-right">Trivial de películas * 2026</span>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
