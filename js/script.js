@@ -13,6 +13,14 @@ const optionsGrid = document.getElementById('optionsGrid');
 const feedbackArea = document.getElementById('feedbackArea');
 const optionBtns = optionsGrid.querySelectorAll('.option-btn');
 
+const resultIcon = document.getElementById('resultIcon');
+const resultPlayerName = document.getElementById('resultPlayerName');
+const resultRank = document.getElementById('resultRank');
+const resultScoreBar = document.getElementById('resultScoreBar');
+const resultAciertos = document.getElementById('resultAciertos');
+const resultMessage = document.getElementById('resultMessage');
+const restartBtn = document.getElementById('restartBtn');
+
 const allQuestions = [
     { question: "¿En qué año se estrenó Titanic?", options: ["1995", "1997", "1999", "2001"], correct: 1, trivia: "Titanic fue dirigida por James Cameron y ganó 11 premios Oscar." },
     { question: "¿Quién dirigió 'El Padrino'?", options: ["Martin Scorsese", "Stanley Kubrick", "Francis Ford Coppola", "Steven Spielberg"], correct: 2, trivia: "Coppola tenía solo 31 años cuando aceptó el proyecto." },
@@ -257,16 +265,74 @@ function advanceOrEnd() {
     state.currentIndex++;
 
     if (state.currentIndex >= TOTAL_QUESTIONS) {
-        // Encara placeholder, al proper commit afegirem la pantalla de resultats completa
-        switchScreen(resultScreen);
+        endGame();
     } else {
         loadQuestion();
     }
 }
 
-// Event listeners
-document.getElementById('startBtn').addEventListener('click', startGame);
+function endGame() {
+    clearInterval(state.timerInterval);
+    switchScreen(resultScreen);
+    displayResults();
+}
 
+function displayResults() {
+    const score = state.score;
+    const total = TOTAL_QUESTIONS;
+
+    const ranks = [
+        { min: 0, max: 1, title: "Espectador Casual", icon: "🍿", color: "#888", message: "Todavía te queda mucho por ver. ¡Empieza a explorar el mundo del cine y vuelve a intentarlo!" },
+        { min: 2, max: 2, title: "Aficionado al Cine", icon: "🎬", color: "#e67e22", message: "Conoces algunos clásicos, pero aún hay grandes películas esperándote. ¡Sigue viendo cine!" },
+        { min: 3, max: 3, title: "Cinéfilo en Entrenamiento", icon: "🎥", color: "#f1c40f", message: "¡Vas por buen camino! Tienes una base sólida de cultura cinematográfica." },
+        { min: 4, max: 4, title: "Experto en Películas", icon: "⭐", color: "#e50914", message: "¡Impresionante! Conoces muy bien el séptimo arte. Pocos llegan hasta aquí." },
+        { min: 5, max: 5, title: "Maestro del Cine", icon: "🏆", color: "#ffd700", message: "¡Eres una leyenda! Tu conocimiento cinematográfico es extraordinario. ¡El Spielberg de los trivials!" }
+    ];
+
+    const rank = ranks.find(r => score >= r.min && score <= r.max) || ranks[0];
+
+    resultPlayerName.textContent = ', ' + state.playerName;
+    resultIcon.textContent = rank.icon;
+    resultRank.textContent = rank.title;
+    resultRank.style.color = rank.color;
+    resultRank.style.borderColor = rank.color;
+
+    const hexToRgba = (hex) => {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `rgba(${r},${g},${b},0.12)`;
+    };
+    resultRank.style.background = hexToRgba(rank.color);
+
+    resultAciertos.textContent = `${score} de ${total} aciertos`;
+    resultMessage.textContent = rank.message;
+
+    resultScoreBar.style.width = '0%';
+    setTimeout(() => {
+        resultScoreBar.style.width = (score / total) * 100 + '%';
+    }, 300);
+}
+
+function resetGame() {
+    clearInterval(state.timerInterval);
+    state.playerName = '';
+    state.playerAge = 0;
+    state.questions = [];
+    state.currentIndex = 0;
+    state.score = 0;
+    state.timeLeft = TIME_PER_QUESTION;
+    state.answered = false;
+    state.answersHistory = [];
+
+    document.getElementById('playerName').value = '';
+    document.getElementById('playerAge').value = '';
+    resultScoreBar.style.width = '0%';
+
+    switchScreen(homeScreen);
+}
+
+document.getElementById('startBtn').addEventListener('click', startGame);
 document.getElementById('playerName').addEventListener('keydown', function (e) {
     if (e.key === 'Enter') startGame();
 });
@@ -280,6 +346,8 @@ optionBtns.forEach(btn => {
         handleAnswer(index);
     });
 });
+
+restartBtn.addEventListener('click', resetGame);
 
 const style = document.createElement('style');
 style.textContent = `
