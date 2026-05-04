@@ -18,6 +18,8 @@
     --white:     #ffffff;
     --gray:      #aaaaaa;
     --gray2:     #666666;
+    --green:     #2ecc71;
+    --yellow:    #f1c40f;
     --font-display: 'Bebas Neue', sans-serif;
     --font-body:    'Inter', sans-serif;
 }
@@ -497,6 +499,76 @@ body {
     border-color: #e67e22;
 }
 
+/* Timer */
+.timer-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.timer-bar-wrapper {
+    position: relative;
+    width: 160px;
+    height: 8px;
+}
+
+.timer-bar-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--dark3);
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+.timer-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: var(--green);
+    border-radius: 10px;
+    transition: width 0.1s linear, background 0.4s ease;
+    z-index: 1;
+}
+
+.timer-bar.warning {
+    background: var(--yellow);
+}
+
+.timer-bar.danger {
+    background: var(--red);
+    animation: pulseBar 0.6s ease-in-out infinite;
+}
+
+@keyframes pulseBar {
+    0%, 100% { box-shadow: 0 0 6px var(--red); }
+    50% { box-shadow: 0 0 18px var(--red), 0 0 30px rgba(229,9,20,0.5); }
+}
+
+.timer-number {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--white);
+    min-width: 32px;
+    text-align: center;
+    transition: color 0.3s;
+}
+
+.timer-number.warning-num {
+    color: var(--yellow);
+}
+
+.timer-number.danger-num {
+    color: var(--red);
+    animation: pulseNum 0.6s ease-in-out infinite;
+}
+
+@keyframes pulseNum {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
 .question-block {
     text-align: center;
 }
@@ -599,6 +671,21 @@ body {
     text-align: center;
 }
 
+.feedback-area.correct-fb {
+    color: var(--green);
+    font-weight: 600;
+}
+
+.feedback-area.incorrect-fb {
+    color: var(--red);
+    font-weight: 600;
+}
+
+.feedback-area.timeout-fb {
+    color: var(--yellow);
+    font-weight: 600;
+}
+
 /* Placeholders */
 .result-placeholder {
     display: flex;
@@ -665,6 +752,10 @@ body {
         padding: 32px 20px 48px;
         gap: 20px;
     }
+
+    .timer-bar-wrapper {
+        width: 110px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -698,6 +789,15 @@ body {
         flex-direction: column;
         align-items: stretch;
         gap: 14px;
+    }
+
+    .timer-section {
+        justify-content: flex-end;
+    }
+
+    .timer-bar-wrapper {
+        width: 100%;
+        max-width: 200px;
     }
 
     .question-text {

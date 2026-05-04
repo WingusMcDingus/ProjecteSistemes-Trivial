@@ -6,6 +6,8 @@ const resultScreen = document.getElementById('resultScreen');
 
 const currentQSpan = document.getElementById('currentQ');
 const progressDots = document.getElementById('progressDots');
+const timerBar = document.getElementById('timerBar');
+const timerNumber = document.getElementById('timerNumber');
 const questionText = document.getElementById('questionText');
 const optionsGrid = document.getElementById('optionsGrid');
 const feedbackArea = document.getElementById('feedbackArea');
@@ -40,6 +42,7 @@ const allQuestions = [
 ];
 
 const TOTAL_QUESTIONS = 5;
+const TIME_PER_QUESTION = 15;
 
 const state = {
     playerName: '',
@@ -47,6 +50,8 @@ const state = {
     questions: [],
     currentIndex: 0,
     score: 0,
+    timeLeft: TIME_PER_QUESTION,
+    timerInterval: null,
     answered: false,
     answersHistory: []
 };
@@ -101,6 +106,7 @@ function startGame() {
     state.score = 0;
     state.answered = false;
     state.answersHistory = [];
+    clearInterval(state.timerInterval);
 
     switchScreen(gameScreen);
     loadQuestion();
@@ -108,6 +114,7 @@ function startGame() {
 
 function loadQuestion() {
     const q = state.questions[state.currentIndex];
+    state.timeLeft = TIME_PER_QUESTION;
     state.answered = false;
 
     currentQSpan.textContent = state.currentIndex + 1;
@@ -127,6 +134,13 @@ function loadQuestion() {
 
     feedbackArea.textContent = '';
     feedbackArea.className = 'feedback-area';
+
+    timerBar.style.width = '100%';
+    timerBar.classList.remove('warning', 'danger');
+    timerNumber.textContent = TIME_PER_QUESTION;
+    timerNumber.classList.remove('warning-num', 'danger-num');
+
+    startTimer();
 }
 
 function updateProgressDots() {
@@ -141,24 +155,88 @@ function updateProgressDots() {
     });
 }
 
-function handleAnswer(selectedIndex) {
+function startTimer() {
+    clearInterval(state.timerInterval);
+    const totalMs = TIME_PER_QUESTION * 1000;
+    const intervalMs = 50;
+    const decrementPerTick = (intervalMs / totalMs) * 100;
+    let ticks = 0;
+
+    state.timerInterval = setInterval(() => {
+        ticks++;
+        const newWidth = Math.max(0, 100 - ticks * decrementPerTick);
+        timerBar.style.width = newWidth + '%';
+
+        const remaining = Math.ceil((100 - ticks * decrementPerTick) / 100 * TIME_PER_QUESTION);
+        if (remaining !== state.timeLeft) {
+            state.timeLeft = remaining;
+            timerNumber.textContent = remaining;
+
+            timerBar.classList.remove('warning', 'danger');
+            timerNumber.classList.remove('warning-num', 'danger-num');
+
+            if (remaining <= 5) {
+                timerBar.classList.add('danger');
+                timerNumber.classList.add('danger-num');
+            } else if (remaining <= 8) {
+                timerBar.classList.add('warning');
+                timerNumber.classList.add('warning-num');
+            }
+        }
+
+        if (newWidth <= 0) {
+            clearInterval(state.timerInterval);
+            handleTimeout();
+        }
+    }, intervalMs);
+}
+
+function handleTimeout() {
     if (state.answered) return;
     state.answered = true;
+    clearInterval(state.timerInterval);
 
     const q = state.questions[state.currentIndex];
-    const isCorrect = selectedIndex === q.correct;
+    const randomIndex = Math.floor(Math.random() * 4);
+    const isCorrect = randomIndex === q.correct;
 
-    if (isCorrect) {
-        state.score++;
-    }
+    if (isCorrect) state.score++;
     state.answersHistory.push(isCorrect);
 
     optionBtns.forEach((btn, i) => {
         btn.disabled = true;
         btn.classList.add('disabled');
-        if (i === q.correct) {
-            btn.classList.add('reveal-correct');
-        }
+        if (i === q.correct) btn.classList.add('reveal-correct');
+    });
+
+    if (!isCorrect) {
+        optionBtns[randomIndex].classList.add('incorrect');
+    } else {
+        optionBtns[randomIndex].classList.add('correct');
+    }
+
+    feedbackArea.textContent = '⏰ ¡Se acabó el tiempo! El juego ha elegido por ti.';
+    feedbackArea.className = 'feedback-area timeout-fb';
+
+    updateProgressDots();
+    setTimeout(advanceOrEnd, 2000);
+}
+
+function handleAnswer(selectedIndex) {
+    if (state.answered) return;
+    state.answered = true;
+    clearInterval(state.timerInterval);
+
+    const q = state.questions[state.currentIndex];
+    const isCorrect = selectedIndex === q.correct;
+
+    if (isCorrect) state.score++;
+    state.answersHistory.push(isCorrect);
+
+    optionBtns.forEach((btn, i) => {
+        btn.disabled = true;
+        btn.classList.add('disabled');
+        if (i === q.correct) btn.classList.add('reveal-correct');
     });
 
     if (isCorrect) {
@@ -172,7 +250,6 @@ function handleAnswer(selectedIndex) {
     }
 
     updateProgressDots();
-
     setTimeout(advanceOrEnd, 2000);
 }
 
@@ -180,7 +257,7 @@ function advanceOrEnd() {
     state.currentIndex++;
 
     if (state.currentIndex >= TOTAL_QUESTIONS) {
-        // Placeholder: més endavant anirem a la pantalla de resultats definitiva
+        // Encara placeholder, al proper commit afegirem la pantalla de resultats completa
         switchScreen(resultScreen);
     } else {
         loadQuestion();
