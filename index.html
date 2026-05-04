@@ -134,11 +134,23 @@
             </div>
         </div>
 
-        <!-- PANTALLA DE RESULTADOS (placeholder) -->
+        <!-- PANTALLA DE RESULTADOS -->
         <div id="resultScreen" class="screen">
-            <div class="result-placeholder">
-                <i class="fas fa-trophy"></i>
-                <p>Resultados de la partida</p>
+            <div class="result-wrapper">
+                <div class="result-card">
+                    <div class="result-icon" id="resultIcon">🍿</div>
+                    <h2 class="result-heading">¡Partida terminada<span class="result-player-name" id="resultPlayerName"></span>!</h2>
+                    <div class="result-rank" id="resultRank">Espectador Casual</div>
+                    <div class="result-score-bar-wrapper">
+                        <div class="result-score-bar" id="resultScoreBar"></div>
+                        <div class="result-score-bar-bg"></div>
+                    </div>
+                    <p class="result-aciertos" id="resultAciertos">0 de 5 aciertos</p>
+                    <p class="result-message" id="resultMessage"></p>
+                    <button class="btn-restart" id="restartBtn">
+                        <i class="fas fa-rotate-left"></i> Jugar de nuevo
+                    </button>
+                </div>
             </div>
         </div>
     </div>

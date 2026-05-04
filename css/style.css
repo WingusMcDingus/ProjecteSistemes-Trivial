@@ -686,21 +686,143 @@ body {
     font-weight: 600;
 }
 
-/* Placeholders */
-.result-placeholder {
+/* ───────────────────────────────────
+   PANTALLA DE RESULTADOS
+   ─────────────────────────────────── */
+.result-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 75vh;
+    padding: 40px 28px;
+    background: radial-gradient(ellipse at center, #1a0a0a 0%, var(--black) 70%);
+}
+
+.result-card {
+    background: var(--dark);
+    border: 2px solid #2a2a2a;
+    border-radius: 20px;
+    padding: 48px 40px;
+    text-align: center;
+    max-width: 520px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 60vh;
-    color: var(--gray);
     gap: 16px;
-    font-size: 1.2rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    animation: resultPopIn 0.5s ease;
 }
 
-.result-placeholder i {
-    font-size: 3rem;
+@keyframes resultPopIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.result-icon {
+    font-size: 4rem;
+    animation: bounceIcon 0.7s ease;
+}
+
+@keyframes bounceIcon {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.result-heading {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    letter-spacing: 2px;
+    color: var(--white);
+}
+
+.result-player-name {
     color: var(--red);
+}
+
+.result-rank {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    padding: 8px 24px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.result-score-bar-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    height: 10px;
+    margin: 4px 0;
+}
+
+.result-score-bar-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--dark3);
+    border-radius: 10px;
+}
+
+.result-score-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--red);
+    border-radius: 10px;
+    width: 0%;
+    transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 1;
+    box-shadow: 0 0 12px rgba(229, 9, 20, 0.5);
+}
+
+.result-aciertos {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+}
+
+.result-message {
+    font-size: 0.9rem;
+    color: var(--gray);
+    line-height: 1.6;
+    max-width: 380px;
+}
+
+.btn-restart {
+    background: var(--red);
+    border: none;
+    color: white;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 14px 32px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+}
+
+.btn-restart:hover {
+    background: #c00;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(229, 9, 20, 0.35);
+}
+
+.btn-restart:active {
+    transform: scale(0.97);
 }
 
 /* Responsive */
@@ -756,6 +878,14 @@ body {
     .timer-bar-wrapper {
         width: 110px;
     }
+
+    .result-card {
+        padding: 36px 24px;
+    }
+
+    .result-rank {
+        font-size: 2rem;
+    }
 }
 
 @media (max-width: 600px) {
@@ -806,6 +936,10 @@ body {
 
     .game-container {
         padding: 24px 16px 40px;
+    }
+
+    .result-rank {
+        font-size: 1.6rem;
     }
 }
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap');
