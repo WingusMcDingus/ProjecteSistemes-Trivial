@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuizMovie · Trivial de películas</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -18,10 +18,11 @@
             </div>
             <span class="logo-text">QuizMovie</span>
         </div>
-        <span class="navbar-tagline">Trivial de películas</span>
+        <span class="navbar-tagline">🎬 Trivial de películas</span>
     </header>
 
     <div class="app-wrapper">
+        <!-- PANTALLA INICIAL (HOME) -->
         <div id="homeScreen" class="screen active-screen">
             <section class="hero">
                 <div class="poster-grid">
@@ -97,9 +98,21 @@
             </section>
         </div>
 
-        <!-- Las otras pantallas se añadirán en próximos commits -->
-        <div id="gameScreen" class="screen"></div>
-        <div id="resultScreen" class="screen"></div>
+        <!-- PANTALLA DE JUEGO (placeholder) -->
+        <div id="gameScreen" class="screen">
+            <div class="game-placeholder">
+                <i class="fas fa-hourglass-half"></i>
+                <p>El juego se está preparando...</p>
+            </div>
+        </div>
+
+        <!-- PANTALLA DE RESULTADOS (placeholder) -->
+        <div id="resultScreen" class="screen">
+            <div class="result-placeholder">
+                <i class="fas fa-trophy"></i>
+                <p>Resultados de la partida</p>
+            </div>
+        </div>
     </div>
 
     <footer class="site-footer">
@@ -110,7 +123,7 @@
             </div>
             <span class="logo-text">QuizMovie</span>
         </div>
-        <span class="footer-right">Trivial de películas * 2026</span>
+        <span class="footer-right">🎬 Trivial de películas * 2026</span>
     </footer>
 
     <script src="script.js"></script>
