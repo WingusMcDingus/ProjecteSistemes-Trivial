@@ -98,11 +98,33 @@
             </section>
         </div>
 
-        <!-- PANTALLA DE JUEGO (placeholder) -->
+        <!-- PANTALLA DE JUEGO (funcional) -->
         <div id="gameScreen" class="screen">
-            <div class="game-placeholder">
-                <i class="fas fa-hourglass-half"></i>
-                <p>El juego se está preparando...</p>
+            <div class="game-container">
+                <div class="game-top-bar">
+                    <div class="progress-section">
+                        <span class="progress-label">Pregunta <span id="currentQ">1</span> de 5</span>
+                        <div class="progress-dots-row" id="progressDots">
+                            <span class="pdot active"></span>
+                            <span class="pdot"></span>
+                            <span class="pdot"></span>
+                            <span class="pdot"></span>
+                            <span class="pdot"></span>
+                        </div>
+                    </div>
+                    <!-- El temporizador s'afegirà al commit 4 -->
+                </div>
+                <div class="question-block">
+                    <p class="question-label">🎯 Elige la respuesta correcta</p>
+                    <h2 class="question-text" id="questionText">¿Pregunta?</h2>
+                </div>
+                <div class="options-grid-2x2" id="optionsGrid">
+                    <button class="option-btn kahoot-red" data-index="0"><span class="option-letter">A</span><span class="option-text"></span></button>
+                    <button class="option-btn kahoot-blue" data-index="1"><span class="option-letter">B</span><span class="option-text"></span></button>
+                    <button class="option-btn kahoot-yellow" data-index="2"><span class="option-letter">C</span><span class="option-text"></span></button>
+                    <button class="option-btn kahoot-green" data-index="3"><span class="option-letter">D</span><span class="option-text"></span></button>
+                </div>
+                <div class="feedback-area" id="feedbackArea"></div>
             </div>
         </div>
 
@@ -126,6 +148,6 @@
         <span class="footer-right">🎬 Trivial de películas * 2026</span>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
