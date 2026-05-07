@@ -573,34 +573,6 @@ body {
     text-align: center;
 }
 
-.question-image-wrap {
-    margin-top: 16px;
-    width: 100%;
-    max-height: 180px;
-    overflow: hidden;
-    border-radius: 12px;
-    border: 2px solid #2a2a2a;
-    background: var(--dark3);
-    display: none;
-}
-
-.question-image-wrap.visible {
-    display: block;
-}
-
-.question-image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    display: block;
-    transition: opacity 0.4s ease;
-    opacity: 0;
-}
-
-.question-image.loaded {
-    opacity: 1;
-}
-
 .question-label {
     font-size: 0.8rem;
     text-transform: uppercase;
@@ -967,4 +939,13 @@ body {
     .result-rank {
         font-size: 1.6rem;
     }
+}
+
+.question-image {
+    display: block;
+    width: 200px;          /* elige el ancho que prefieras */
+    height: 200px;         /* mismo alto = cuadrado perfecto */
+    object-fit: cover;     /* recorta la imagen para llenar el cuadro sin deformarse */
+    margin: 0 auto;        /* centrado horizontal si es display:block */
+    border-radius: 10px;   /* opcional, para darle un acabado redondeado */
 }
