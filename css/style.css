@@ -599,7 +599,6 @@ body {
     display: flex;
     align-items: center;
     gap: 14px;
-    border: 2px solid rgba(255,255,255,0.15);
     border-radius: 16px;
     padding: 18px 20px;
     cursor: pointer;
@@ -620,10 +619,10 @@ body {
     transform: scale(0.98);
 }
 
-.kahoot-red    { background: #e74c3c; }
-.kahoot-blue   { background: #3498db; }
-.kahoot-yellow { background: #f1c40f; color: #1e293b; }
-.kahoot-green  { background: #2ecc71; }
+.kahoot-red    { background: linear-gradient(135deg, #e74c3c 0%, #0a0a0a 100%); }
+.kahoot-blue   { background: linear-gradient(135deg, #3498db 0%, #0a0a0a 100%); }
+.kahoot-yellow { background: linear-gradient(135deg, #f1c40f 0%, #0a0a0a 100%); }
+.kahoot-green  { background: linear-gradient(135deg, #2ecc71 0%, #0a0a0a 100%); }
 
 .option-letter {
     display: flex;
@@ -648,7 +647,6 @@ body {
 .option-btn.incorrect {
     opacity: 0.7;
     border: 2px solid #e50914 !important;
-    background: #3a1a1a !important;
     color: #ccc;
 }
 
