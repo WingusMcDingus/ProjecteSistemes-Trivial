@@ -12,6 +12,8 @@ const questionText = document.getElementById('questionText');
 const optionsGrid = document.getElementById('optionsGrid');
 const feedbackArea = document.getElementById('feedbackArea');
 const optionBtns = optionsGrid.querySelectorAll('.option-btn');
+const questionImageWrap = document.getElementById('questionImageWrap');
+const questionImage = document.getElementById('questionImage');
 
 const resultIcon = document.getElementById('resultIcon');
 const resultPlayerName = document.getElementById('resultPlayerName');
