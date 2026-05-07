@@ -943,7 +943,7 @@ body {
 
 .question-image {
     display: block;
-    width: 200px;          /* elige el ancho que prefieras */
+    width: 400px;          /* elige el ancho que prefieras */
     height: 200px;         /* mismo alto = cuadrado perfecto */
     object-fit: cover;     /* recorta la imagen para llenar el cuadro sin deformarse */
     margin: 0 auto;        /* centrado horizontal si es display:block */
