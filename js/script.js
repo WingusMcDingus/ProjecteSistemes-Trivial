@@ -145,6 +145,20 @@ function loadQuestion() {
     feedbackArea.textContent = '';
     feedbackArea.className = 'feedback-area';
 
+    questionImage.classList.remove('loaded');
+    questionImageWrap.classList.remove('visible');
+    if (q.image) {
+        questionImage.src = q.image;
+        questionImage.alt = q.question;
+        questionImage.onload = () => {
+            questionImageWrap.classList.add('visible');
+            questionImage.classList.add('loaded');
+        };
+        questionImage.onerror = () => {
+            questionImageWrap.classList.remove('visible');
+        };
+    }
+
     timerBar.style.width = '100%';
     timerBar.classList.remove('warning', 'danger');
     timerNumber.textContent = TIME_PER_QUESTION;
